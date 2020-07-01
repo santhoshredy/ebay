@@ -10,6 +10,7 @@ import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TakesScreenshot;
 
 import com.ebay.qa.base.Basepage;
+import com.ebay.qa.resources.ExcelDataConfig;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -39,6 +40,8 @@ public class LoginPage  extends Basepage{
 	
 	public HomePage clickOnViews() throws Exception{
 		
+		ExcelDataConfig excel=new ExcelDataConfig("./src/main/resources/Book1.xlsx");
+		
 		Set<String> con = driver.getContextHandles();
 		for(String c : con)
 		{
@@ -51,10 +54,10 @@ public class LoginPage  extends Basepage{
 		}
 		existing_customer_link.click();
 		
-		enter_email.sendKeys("yenumulasrr@gmail.com");
+		enter_email.sendKeys(excel.getData("Sheet1", 1, 0));            //"yenumulasrr@gmail.com"
 		enter_email_continue.click();
 		
-		enter_password.sendKeys("santhu");
+		enter_password.sendKeys(excel.getData("Sheet1", 1, 1));                     //"santhu"
 		click_login_btn.click();
 		
 		rotateScreen();

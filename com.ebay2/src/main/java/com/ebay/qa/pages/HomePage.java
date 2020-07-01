@@ -6,6 +6,7 @@ import org.testng.Assert;
 import static org.testng.Assert.assertEquals;
 
 import com.ebay.qa.base.Basepage;
+import com.ebay.qa.resources.ExcelDataConfig;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -64,7 +65,10 @@ public class HomePage extends Basepage {
 	
 	
 	public void clickOnAutocomplete() throws InterruptedException{
-		searchbox.sendKeys("65-inch tv");
+		
+		ExcelDataConfig excel=new ExcelDataConfig("./src/main/resources/Book1.xlsx");
+		
+		searchbox.sendKeys(excel.getData("Sheet2",1,0));              //"65-inch tv"
 		searchbox.sendKeys(Keys.ENTER);
 		
 AndroidElement tv=(AndroidElement) driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"WebView\").instance(4))");
@@ -80,12 +84,12 @@ AndroidElement tv=(AndroidElement) driver.findElementByAndroidUIAutomator("new U
 		 
 		 select_adress.click();
 		 
-		 fullname.sendKeys("santhosh");
-		 mobilenumber.sendKeys("8888855556");
-		 enter_city.sendKeys("bengalore");
-		 enter_postalcode.sendKeys("123456");
-		 enter_adressline1.sendKeys("h.no:45,ram nagar ,tekkali street");
-		 enter_landmark.sendKeys("pragathi book store");
+		 fullname.sendKeys(excel.getData("Sheet3",1,0));               //"santhosh"
+		 mobilenumber.sendKeys(excel.getData("Sheet3",1,1));          //"8888855556"
+		 enter_city.sendKeys(excel.getData("Sheet3",1,2));             //"bengalore"  
+		 enter_postalcode.sendKeys(excel.getData("Sheet3",1,3));       //"123456"
+		 enter_adressline1.sendKeys(excel.getData("Sheet3",1,4));      //"h.no:45,ram nagar ,tekkali street"
+		 enter_landmark.sendKeys(excel.getData("Sheet3",1,5));           //"pragathi book store"
 		 use_this_adress.click();
 		 
 		 
